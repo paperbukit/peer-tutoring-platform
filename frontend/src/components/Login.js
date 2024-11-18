@@ -11,7 +11,7 @@ const Login = () => {
         e.preventDefault();
         try {
             await loginUser({ email, password });
-            navigate('/study-groups');
+            navigate('/home');
         } catch (error) {
             alert("Error logging in");
         }

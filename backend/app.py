@@ -104,6 +104,20 @@ def add_study_group():
     db.session.commit()
     return jsonify({'message': 'Study group created successfully!'}), 201
 
+# Home route after login
+@app.route('/home')
+def homepage():
+    return jsonify({
+        "message": "Welcome to the home page!",
+        "features": [
+            "Find Study Group",
+            "Create Study Group",
+            "Find Tutor",
+            "Become a Tutor"
+        ]
+    }), 200
+
+
 # Run the Flask app
 if __name__ == '__main__':
     app.run(debug=True)
