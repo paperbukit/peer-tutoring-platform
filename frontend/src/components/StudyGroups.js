@@ -1,4 +1,4 @@
-// src/components/StudyGroups.js
+// components/StudyGroups.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -15,6 +15,18 @@ const StudyGroups = () => {
         fetchStudyGroups();
     }, []);
 
+    const formatDateTime = (dateTimeString) => {
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true, // Use 12-hour format
+        };
+        return new Intl.DateTimeFormat('en-US', options).format(new Date(dateTimeString));
+    };
+
     return (
         <div>
             <h1>Study Groups</h1>
@@ -22,6 +34,10 @@ const StudyGroups = () => {
                 {studyGroups.map(group => (
                     <li key={group.id}>
                         <strong>{group.name}</strong>: {group.description}
+                        <div>Subject: {group.subject}</div>
+                        <div>Topic: {group.topic}</div>
+                        <div>Max Students: {group.max_students}</div>
+                        <div>Scheduled Time: {formatDateTime(group.scheduled_time)}</div>
                     </li>
                 ))}
             </ul>
@@ -30,4 +46,4 @@ const StudyGroups = () => {
     );
 };
 
-export default StudyGroups;
+export default StudyGroups; // Ensure this is present
