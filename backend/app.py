@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user
 from datetime import datetime
+from apscheduler.schedulers.background import BackgroundScheduler
 
 
 # Initialize Flask app and CORS
@@ -101,6 +102,30 @@ def login():
         return jsonify({'message': 'Logged in successfully!'}), 200
     return jsonify({'message': 'Invalid credentials!'}), 401
 
+def delete_expired_groups():
+    with app.app_context():  # Ensure proper Flask context
+        now = datetime.now()
+        expired_groups = StudyGroup.query.filter(StudyGroup.scheduled_time < now).all()
+        for group in expired_groups:
+            db.session.delete(group)
+        db.session.commit()
+        print("Expired groups deleted")
+
+# Add scheduler to the app
+from flask_apscheduler import APScheduler
+
+scheduler = APScheduler()
+scheduler.init_app(app)
+scheduler.start()
+
+# Add cleanup job to run every hour
+scheduler.add_job(
+    id='delete_expired_groups',
+    func=delete_expired_groups,
+    trigger='interval',
+    hours=1
+)
+
 # Get all study groups route (GET)
 @app.route('/study_groups', methods=['GET'])
 def get_study_groups():
@@ -117,6 +142,8 @@ def get_study_groups():
     } for group in study_groups]
     
     return jsonify({'study_groups': study_groups_list}), 200
+
+
 # Create a new study group route (POST)
 @app.route('/study_groups', methods=['POST'])
 def add_study_group():
