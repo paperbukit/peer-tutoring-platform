@@ -1,23 +1,42 @@
-// src/components/CreateStudyGroup.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const CreateStudyGroup = () => {
     const [name, setName] = useState('');
+    const [subject, setSubject] = useState('');
+    const [topic, setTopic] = useState('');
+    const [maxStudents, setMaxStudents] = useState(8);  // Default to max 8 students
     const [description, setDescription] = useState('');
+    const [scheduledTime, setScheduledTime] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
-            await fetch('http://localhost:5000/study_groups', {
+            const response = await fetch('http://localhost:5000/study_groups', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name, description }),
+                body: JSON.stringify({
+                    name,
+                    subject,
+                    topic,
+                    max_students: maxStudents,
+                    description,
+                    scheduled_time: scheduledTime
+                }),
             });
-            navigate('/study-groups');
+
+            const data = await response.json();
+            
+            if (response.status === 201) {
+                navigate('/study-groups');
+            } else {
+                alert(data.message);  // Display the error message (e.g., group name already exists)
+            }
+
         } catch (error) {
             alert('Error creating study group');
         }
@@ -36,10 +55,44 @@ const CreateStudyGroup = () => {
                     />
                 </div>
                 <div>
+                    <label>Subject:</label>
+                    <input
+                        type="text"
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label>Topic:</label>
+                    <input
+                        type="text"
+                        value={topic}
+                        onChange={(e) => setTopic(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label>Max Students:</label>
+                    <input
+                        type="number"
+                        value={maxStudents}
+                        onChange={(e) => setMaxStudents(Number(e.target.value))}
+                        min="1"
+                        max="8"
+                    />
+                </div>
+                <div>
                     <label>Description:</label>
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label>Scheduled Time:</label>
+                    <input
+                        type="datetime-local"
+                        value={scheduledTime}
+                        onChange={(e) => setScheduledTime(e.target.value)}
                     />
                 </div>
                 <button type="submit">Create Study Group</button>
