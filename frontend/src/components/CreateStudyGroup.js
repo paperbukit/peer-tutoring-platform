@@ -5,7 +5,7 @@ const CreateStudyGroup = () => {
     const [name, setName] = useState('');
     const [subject, setSubject] = useState('');
     const [topic, setTopic] = useState('');
-    const [maxStudents, setMaxStudents] = useState(8);  // Default to max 8 students
+    // const [maxStudents, setMaxStudents] = useState(15);  // Default to max 8 students
     const [description, setDescription] = useState('');
     const [scheduledTime, setScheduledTime] = useState('');
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const CreateStudyGroup = () => {
                     name,
                     subject,
                     topic,
-                    max_students: maxStudents,
+                    // max_students: maxStudents,
                     description,
                     scheduled_time: scheduledTime
                 }),
@@ -70,7 +70,7 @@ const CreateStudyGroup = () => {
                         onChange={(e) => setTopic(e.target.value)}
                     />
                 </div>
-                <div>
+                {/* <div>
                     <label>Max Students:</label>
                     <input
                         type="number"
@@ -79,7 +79,7 @@ const CreateStudyGroup = () => {
                         min="1"
                         max="8"
                     />
-                </div>
+                </div> */}
                 <div>
                     <label>Description:</label>
                     <textarea
