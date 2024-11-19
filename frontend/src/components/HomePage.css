@@ -1,0 +1,96 @@
+/* src/components/HomePage.css */
+
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+
+.home-content {
+    background-color: white;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+.home-content h1 {
+    font-family: 'Poppins', sans-serif; /* Poppins for bold, modern look */
+    font-size: 3.5rem; /* Adjusted size for better balance */
+    font-weight: 700; /* Slightly less heavy */
+    color: #333; /* Dark color for contrast */
+    margin-bottom: 40px; /* Space between title and buttons */
+    padding: 0 20px; /* Padding to prevent text from touching edges */
+    letter-spacing: 0.5px; /* Slight spacing between letters */
+    line-height: 1.2; /* Better line height for readability */
+    text-transform: none; /* Remove uppercase transformation */
+}
+
+/* Features section styles */
+.feature-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px; /* Increased gap between feature items */
+}
+
+.feature-item {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 250px;
+    min-width: 250px;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+    font-size: 3em;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.feature-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.feature-item p {
+    font-size: 1em;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 600px) {
+    .home-content h1 {
+        font-size: 2.5rem; /* Slightly smaller on small screens */
+    }
+
+    .feature-item h3 {
+        font-size: 1.2em;
+    }
+
+    .feature-item p {
+        font-size: 0.9em;
+    }
+}
