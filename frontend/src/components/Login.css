@@ -1,0 +1,91 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Container */
+.login-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f7f7f7;
+}
+
+/* Left Section for Quote */
+.quote-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0;
+    padding: 30px;
+}
+
+.quote-text {
+    font-size: 3em;
+    font-weight: 800;
+    color: #333;
+    text-align: left;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.quote-subtitle {
+    font-size: 1.4em;
+    color: #555;
+    text-align: center;
+}
+
+/* Right Section for Login Form */
+.form-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+/* Login Form Styling */
+.login-form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-form h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #333;
+}
